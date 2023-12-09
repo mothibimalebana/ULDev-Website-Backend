@@ -3,9 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const eventRoutes = require("./routes/eventRoutes");
 const mongoose = require("mongoose");
-const multer = require("multer");
-const Grid = require("gridfs-stream");
-const path = require("path");
+
 
 // Run express app
 const app = express();
@@ -28,15 +26,3 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-
-const conn = mongoose.connection;
-
-let gfs;
-conn.once("open", () => {
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection("uploads");
-});
-
-// Multer configuration for file uploads
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
