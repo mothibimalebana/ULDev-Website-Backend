@@ -4,7 +4,6 @@ const dotenv = require("dotenv").config();
 const eventRoutes = require("./routes/eventRoutes");
 const mongoose = require("mongoose");
 
-
 // Run express app
 const app = express();
 
@@ -13,10 +12,7 @@ app.use(express.json());
 app.use("/events", eventRoutes);
 
 mongoose
-  .connect(process.env.MongoDB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MongoDB_URI)
   .then(() => {
     //Set up Port
     app.listen(process.env.PORT, () => {
