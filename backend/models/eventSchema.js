@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
+
 /** -The Event model represents each event with a title, link, and a reference to the File model, which stores information about the uploaded image using GridFS.
 
 	-The File model stores information about the uploaded image, such as filename and content type.
 */
-
 
 // Create a mongoose schema for the events
 const eventSchema = new mongoose.Schema({
