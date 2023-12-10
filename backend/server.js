@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const eventRouter = require("./routes/eventsRoutes");
+const multer = require("multer")
 
 //Initiate server app
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 app.use(express.json());
 app.use("/events", eventRouter);
 
+//Listening
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
 app.listen(process.env.PORT, () => {
@@ -20,6 +22,3 @@ app.listen(process.env.PORT, () => {
 .catch((error) => {
 	console.log(error)
 })
-
-
-//Listening

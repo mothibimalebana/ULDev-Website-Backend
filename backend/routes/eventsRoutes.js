@@ -1,14 +1,28 @@
 //Import Modules
 const express = require("express");
+const upload = require("../middleware/eventMiddleware");
+const eventModel = require("../models/eventSchema");
 
 //Initiate router
 const router = express.Router();
 
 //Routes
-router.post("/", (req, res) => {
-  res.json({
-    message: "create an event",
-  });
+router.post("/", upload.single("image"), async (req, res) => {
+  try {
+    const { title, link } = req.body;
+    const image = req.file.path;
+
+    const newEvent = new Event({
+      title,
+      link,
+      image,
+    });
+
+    const savedEvent = await newEvent.save();
+    res.json(savedEvent);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 router.get("/", (req, res) => {
   res.json({
