@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     cb(null, "./public/uploads/images");
   },
   filename: (req, file, cb) => {
-    cb(null, "{uuid4()}_${path.extname(file.originalname}");
+    cb(null, Date.now() + '-' + file.originalname);
   },
 });
 const fileFilter = (req, file, cb) => {

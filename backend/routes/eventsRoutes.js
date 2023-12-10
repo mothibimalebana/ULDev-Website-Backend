@@ -12,7 +12,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     const { title, link } = req.body;
     const image = req.file.path;
 
-    const newEvent = new Event({
+    const newEvent = new eventModel({
       title,
       link,
       image,
